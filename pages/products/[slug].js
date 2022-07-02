@@ -14,7 +14,7 @@ export default function ProductDetailsPage({ product }) {
     const { dispatch } = useContext(Store)
 
     if (!product) {
-        return <h1>product not found</h1>
+        return <h1>Product Not Found</h1>
     }
 
 

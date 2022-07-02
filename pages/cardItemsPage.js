@@ -15,16 +15,6 @@ function CardItems() {
 
   const router = useRouter()
 
-  const { redirect } = router.query
-
-  useEffect(() => {
-    if (!state.userData) {
-      router.push('/login?redirect=cardItemsPage')
-    }
-  }, [router, state.userData])
-
-
-
   let i = 0
   let totalPrice = 0
   for (i; state.card.cardItems.length > i; i++) {
@@ -49,7 +39,7 @@ function CardItems() {
 
   return (
     <Layout>
-      <ToastContainer/>
+      <ToastContainer />
       <div className={styles.container}>
         <h1>shopping card details</h1>
         <div className={styles.tableContainer}>
@@ -67,7 +57,7 @@ function CardItems() {
               {state.card.cardItems && state.card.cardItems.map(item => (
                 <tr key={item.slug}>
                   <td><Image src={item.image} width={75} height={75} alt={item.name} className={styles.image} /></td>
-                  <td><Link href={`/products/${item.slug}`}><span className={styles.link}>{item.name}</span></Link></td>
+                  <td><Link href={`/products/${item.slug}`}><span className="globalLink">{item.name}</span></Link></td>
                   <td>
                     <select value={item.quantity} onChange={(e) => handleChange({ ...item, quantity: e.target.value })}>
                       {

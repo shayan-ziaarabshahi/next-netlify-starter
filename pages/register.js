@@ -34,12 +34,6 @@ function Register() {
 
     const { redirect } = router.query
 
-    useEffect(() => {
-        if (state.userData) {
-            router.push(redirect || '/')
-        }
-    }, [router, state.userData, redirect])
-
     const submitFunc = async (data) => {
         delete data.confirmPassword
         console.log(data)
@@ -64,23 +58,26 @@ function Register() {
     return (
         <Layout>
             <ToastContainer />
-            <div className={styles.container}>
-                <h1 className={styles.header}>register</h1>
-                <div className={styles.formBox}>
-                    <form onSubmit={handleSubmit(submitFunc)} noValidate>
-                        <input type='text' placeholder='name' {...register('name')} />
-                        <p style={{ fontSize: 'small', color: 'red' }}>{errors.name?.message}</p>
-                        <input type='email' placeholder='email' {...register('email')} />
-                        <p style={{ fontSize: 'small', color: 'red' }}>{errors.email?.message}</p>
-                        <input type='password' placeholder='password' {...register('password')} />
-                        <p style={{ fontSize: 'small', color: 'red' }}>{errors.password?.message}</p>
-                        <input type='password' placeholder='confirm password' {...register('confirmPassword')} />
-                        <p style={{ fontSize: 'small', color: 'red' }}>{errors.confirmPassword?.message}</p>
-                        <button type='submit' className={styles.submitBtn}>register</button>
-                    </form>
-                    <Link href='/login'><span className={styles.register}>login</span></Link><span className={styles.registerDescription}> {'(if you already have an account.)'}</span>
+            {!state.userData ? (
+                <div className={styles.container}>
+                    <h1 className={styles.header}>register</h1>
+                    <div className={styles.formBox}>
+                        <form onSubmit={handleSubmit(submitFunc)} noValidate>
+                            <input type='text' placeholder='name' {...register('name')} />
+                            <p style={{ fontSize: 'small', color: 'red' }}>{errors.name?.message}</p>
+                            <input type='email' placeholder='email' {...register('email')} />
+                            <p style={{ fontSize: 'small', color: 'red' }}>{errors.email?.message}</p>
+                            <input type='password' placeholder='password' {...register('password')} />
+                            <p style={{ fontSize: 'small', color: 'red' }}>{errors.password?.message}</p>
+                            <input type='password' placeholder='confirm password' {...register('confirmPassword')} />
+                            <p style={{ fontSize: 'small', color: 'red' }}>{errors.confirmPassword?.message}</p>
+                            <button type='submit' className={styles.submitBtn}>register</button>
+                        </form>
+                        <Link href='/login'><span className={styles.register}>login</span></Link><span className={styles.registerDescription}> {'(if you already have an account.)'}</span>
+                    </div>
                 </div>
-            </div>
+            ) : <h1 className="loginStatement">You Are Already Logged In</h1>}
+
         </Layout>
     )
 

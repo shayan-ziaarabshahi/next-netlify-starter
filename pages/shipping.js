@@ -17,12 +17,6 @@ function Shipping() {
 
   const router = useRouter()
 
-  useEffect(() => {
-    if (!state.userData) {
-      router.push('/login?redirect=/shipping')
-    }
-  }, [router, state.userData])
-
 
   const formValidationSchema = yup.object().shape({
     fullName: yup.string().required(),
@@ -55,29 +49,32 @@ function Shipping() {
 
   return (
     <Layout>
-      <div className={styles.container}>
-        <h1 className={styles.header}>shipping address</h1>
-        <div className={styles.linksContainer}>
-          <Link href='/cardItemsPage'><span className={styles.link}>card items</span></Link>
+      {state.userData ? (
+        <div className={styles.container}>
+          <h1 className={styles.header}>shipping address</h1>
+          <div className={styles.linksContainer}>
+            <Link href='/cardItemsPage'><span className={styles.link}>card items</span></Link>
+          </div>
+          <div className={styles.formBox}>
+            <form onSubmit={handleSubmit(submitFunc)} noValidate>
+              <input type='text' placeholder='Full Name' {...register('fullName')} />
+              <p style={{ fontSize: 'small', color: 'red' }}>{errors.fullName?.message}</p>
+              <input type='text' placeholder='Address' {...register('address')} />
+              <p style={{ fontSize: 'small', color: 'red' }}>{errors.address?.message}</p>
+              <input type='text' placeholder='City' {...register('city')} />
+              <p style={{ fontSize: 'small', color: 'red' }}>{errors.city?.message}</p>
+              <input type='text' placeholder='Postal Code' {...register('postalCode')} />
+              <p style={{ fontSize: 'small', color: 'red' }}>{errors.postalCode?.message}</p>
+              <input type='text' placeholder='Country' {...register('country')} />
+              <p style={{ fontSize: 'small', color: 'red' }}>{errors.country?.message}</p>
+              <input type='text' placeholder='Phone Number' {...register('phoneNumber')} />
+              <p style={{ fontSize: 'small', color: 'red' }}>{errors.phoneNumber?.message}</p>
+              <button type='submit' className={styles.submitBtn}>submit</button>
+            </form>
+          </div>
         </div>
-        <div className={styles.formBox}>
-          <form onSubmit={handleSubmit(submitFunc)} noValidate>
-            <input type='text' placeholder='Full Name' {...register('fullName')} />
-            <p style={{ fontSize: 'small', color: 'red' }}>{errors.fullName?.message}</p>
-            <input type='text' placeholder='Address' {...register('address')} />
-            <p style={{ fontSize: 'small', color: 'red' }}>{errors.address?.message}</p>
-            <input type='text' placeholder='City' {...register('city')} />
-            <p style={{ fontSize: 'small', color: 'red' }}>{errors.city?.message}</p>
-            <input type='text' placeholder='Postal Code' {...register('postalCode')} />
-            <p style={{ fontSize: 'small', color: 'red' }}>{errors.postalCode?.message}</p>
-            <input type='text' placeholder='Country' {...register('country')} />
-            <p style={{ fontSize: 'small', color: 'red' }}>{errors.country?.message}</p>
-            <input type='text' placeholder='Phone Number' {...register('phoneNumber')} />
-            <p style={{ fontSize: 'small', color: 'red' }}>{errors.phoneNumber?.message}</p>
-            <button type='submit' className={styles.submitBtn}>submit</button>
-          </form>
-        </div>
-      </div>
+      ) : <h1 className="loginStatement">You Have To <Link href='/login'><span className="globalLink">LogIn</span></Link> First</h1>}
+
     </Layout>
   )
 }

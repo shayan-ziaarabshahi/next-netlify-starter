@@ -14,3 +14,13 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.loginStatement {
+  margin: 1rem;
+}
+
+.globalLink {
+  text-decoration: underline;
+  color: rgb(72, 139, 184);
+  cursor: pointer;
+}

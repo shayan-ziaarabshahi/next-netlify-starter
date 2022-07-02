@@ -17,19 +17,6 @@ function Payment() {
 
     const router = useRouter()
 
-    useEffect(() => {
-        if (!state.userData) {
-            router.push('/login?redirect=payment')
-        }
-    }, [router, state.userData])
-    useEffect(() => {
-        if (!state.card.shippingAddress) {
-            router.push('/shipping')
-        }
-    }, [router, state.card.shippingAddress])
-
-
-
     const formValidationSchema = yup.object().shape({
         paymentMethod: yup.string().required()
     })
@@ -50,28 +37,29 @@ function Payment() {
 
     return (
         <Layout>
-            <div className={styles.container}>
-                <h1 className={styles.header}>payment method</h1>
-                <div className={styles.linksContainer}>
-                    <Link href='/cardItemsPage'><span className={styles.link}>card items</span></Link>
-                    &nbsp;{'>'}&nbsp;
-                    <Link href='/shipping'><span className={styles.link}>shipping address</span></Link>
+            {state.userData ? (
+                <div className={styles.container}>
+                    <h1 className={styles.header}>payment method</h1>
+                    <div className={styles.linksContainer}>
+                        <Link href='/cardItemsPage'><span className={styles.link}>card items</span></Link>
+                        &nbsp;{'>'}&nbsp;
+                        <Link href='/shipping'><span className={styles.link}>shipping address</span></Link>
+                    </div>
+                    <div className={styles.formBox}>
+                        <form onSubmit={handleSubmit(submitFunc)}>
+                            <input type='radio' name='paymentMethod' value='paypal' {...register('paymentMethod')} /><span>Paypal</span>
+                            <input type='radio' name='paymentMethod' value='stripe' {...register('paymentMethod')} /><span>Stripe</span>
+                            <input type='radio' name='paymentMethod' value='cash' {...register('paymentMethod')} /><span>Cash</span>
+                            <p style={{ fontSize: 'small', color: 'red' }}>{errors.paymentMethod && 'payment method is required'}</p>
+                            <button type='submit' className={styles.submitBtn}>submit</button>
+                        </form>
+                    </div>
                 </div>
-                <div className={styles.formBox}>
-                    <form onSubmit={handleSubmit(submitFunc)}>
-                        <input type='radio' name='paymentMethod' value='paypal' {...register('paymentMethod')} /><span>Paypal</span>
-                        <input type='radio' name='paymentMethod' value='stripe' {...register('paymentMethod')} /><span>Stripe</span>
-                        <input type='radio' name='paymentMethod' value='cash' {...register('paymentMethod')} /><span>Cash</span>
-                        <p style={{ fontSize: 'small', color: 'red' }}>{errors.paymentMethod && 'payment method is required'}</p>
-                        <button type='submit' className={styles.submitBtn}>submit</button>
-                    </form>
-                </div>
-            </div>
+            ) : <h1 className="loginStatement">You Have To <Link href='/login'><span className="globalLink">LogIn</span></Link> First</h1>}
         </Layout>
     )
 }
 
 export default dynamic(() => Promise.resolve(Payment), {
     ssr: false
-   })
-   
+})

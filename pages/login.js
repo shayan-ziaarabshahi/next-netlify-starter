@@ -33,13 +33,6 @@ function Login() {
 
     const { redirect } = router.query
 
-    useEffect(() => {
-        if (state.userData) {
-            router.push(redirect || '/')
-        }
-    }, [router, state.userData, redirect])
-
-
     const submitFunc = async (data) => {
 
         const p = await fetch(`/api/auth/login`, {
@@ -63,19 +56,21 @@ function Login() {
     return (
         <Layout>
             <ToastContainer />
-            <div className={styles.container}>
-                <h1 className={styles.header}>Login</h1>
-                <div className={styles.formBox}>
-                    <form onSubmit={handleSubmit(submitFunc)} noValidate>
-                        <input name='email' type='email' placeholder='email'  {...register('email')} />
-                        <p style={{ fontSize: 'small', color: 'red' }}>{errors.email?.message}</p>
-                        <input name='password' type='password' placeholder='password'   {...register('password')} />
-                        <p style={{ fontSize: 'small', color: 'red' }}>{errors.password?.message}</p>
-                        <button type='submit' className={styles.submitBtn}>login</button>
-                    </form>
-                    <Link href='/register'><span className={styles.register}>register</span></Link><span className={styles.registerDescription}> {'(if you have not any account yet.)'}</span>
+            {!state.userData ? (
+                <div className={styles.container}>
+                    <h1 className={styles.header}>Login</h1>
+                    <div className={styles.formBox}>
+                        <form onSubmit={handleSubmit(submitFunc)} noValidate>
+                            <input name='email' type='email' placeholder='email'  {...register('email')} />
+                            <p style={{ fontSize: 'small', color: 'red' }}>{errors.email?.message}</p>
+                            <input name='password' type='password' placeholder='password'   {...register('password')} />
+                            <p style={{ fontSize: 'small', color: 'red' }}>{errors.password?.message}</p>
+                            <button type='submit' className={styles.submitBtn}>login</button>
+                        </form>
+                        <Link href='/register'><span className={styles.register}>register</span></Link><span className={styles.registerDescription}> {'(if you have not any account yet.)'}</span>
+                    </div>
                 </div>
-            </div>
+            ) : <h1 className="loginStatement">You Are Already Logged In</h1>}
         </Layout>
     )
 }

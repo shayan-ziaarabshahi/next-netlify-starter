@@ -19,13 +19,6 @@ function PlaceOrder() {
 
     const router = useRouter()
 
-    useEffect(() => {
-        if (!state.userData) {
-            router.push('/login?redirect=/placeOrder')
-        }
-    }, [router, state.userData])
-
-
     let roundFunc = (num) => Math.round(num * 100 + Number.EPSILON) / 100
 
     let i = 0
@@ -78,76 +71,80 @@ function PlaceOrder() {
     return (
         <Layout>
             <ToastContainer />
-            <div className={styles.container}>
-                <h1 className={styles.header}>Place Order</h1>
-                <div className={styles.linksContainer}>
-                    <Link href='/cardItemsPage'><span className={styles.link}>card items</span></Link>
-                    &nbsp;{'>'}&nbsp;
-                    <Link href='/shipping'><span className={styles.link}>shipping address</span></Link>
-                    &nbsp;{'>'}&nbsp;
-                    <Link href='/payment'><span className={styles.link}>payment methods</span></Link>
-                </div>
-                <div className={styles.mainFlex}>
-                    <div className={styles.left}>
-                        <div className={styles.shippingContainer}>
-                            <h4>shipping address</h4>
-                            <p>
-                                <span>{state.card.shippingAddress.country}, </span>
-                                <span> {state.card.shippingAddress.city},</span>
-                                <span> {state.card.shippingAddress.address},</span>
-                                <span> {state.card.shippingAddress.fullName}</span><br />
-                                <span> {state.card.shippingAddress.postalCode}</span><br />
-                                <span> {state.card.shippingAddress.phoneNumber}</span>
-                            </p>
-                        </div>
-                        <div className={styles.paymentContainer}>
-                            <h4>payment method</h4>
-                            <span>{state.card.paymentMethod.paymentMethod}</span>
-                        </div>
-                        <div className={styles.ordersContainer}>
-                            <h4>orders</h4>
-                            <div className={styles.tableContainer}>
-                                <table className={styles.table}>
-                                    <thead>
-                                        <tr>
-                                            <td className={styles.firstRowCell}>Image</td>
-                                            <td className={styles.firstRowCell}>Name</td>
-                                            <td className={styles.firstRowCell}>Quantity</td>
-                                            <td className={styles.firstRowCell}>Price</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {state.card.cardItems ? state.card.cardItems.map(item => (
-                                            <tr key={item.slug}>
-                                                <td><Image src={item.image} width={75} height={75} alt={item.name} className={styles.image} /></td>
-                                                <td><Link href={`/products/${item.slug}`}><span className={styles.link}>{item.name}</span></Link></td>
-                                                <td>{item.quantity}</td>
-                                                <td>${item.price}</td>
+            {state.userData ? (
+                <div className={styles.container}>
+                    <h1 className={styles.header}>Place Order</h1>
+                    <div className={styles.linksContainer}>
+                        <Link href='/cardItemsPage'><span className={styles.link}>card items</span></Link>
+                        &nbsp;{'>'}&nbsp;
+                        <Link href='/shipping'><span className={styles.link}>shipping address</span></Link>
+                        &nbsp;{'>'}&nbsp;
+                        <Link href='/payment'><span className={styles.link}>payment methods</span></Link>
+                    </div>
+                    <div className={styles.mainFlex}>
+                        <div className={styles.left}>
+                            <div className={styles.shippingContainer}>
+                                <h4>shipping address</h4>
+                                <p>
+                                    <span>{state.card.shippingAddress.country}, </span>
+                                    <span> {state.card.shippingAddress.city},</span>
+                                    <span> {state.card.shippingAddress.address},</span>
+                                    <span> {state.card.shippingAddress.fullName}</span><br />
+                                    <span> {state.card.shippingAddress.postalCode}</span><br />
+                                    <span> {state.card.shippingAddress.phoneNumber}</span>
+                                </p>
+                            </div>
+                            <div className={styles.paymentContainer}>
+                                <h4>payment method</h4>
+                                <span>{state.card.paymentMethod.paymentMethod}</span>
+                            </div>
+                            <div className={styles.ordersContainer}>
+                                <h4>orders</h4>
+                                <div className={styles.tableContainer}>
+                                    <table className={styles.table}>
+                                        <thead>
+                                            <tr>
+                                                <td className={styles.firstRowCell}>Image</td>
+                                                <td className={styles.firstRowCell}>Name</td>
+                                                <td className={styles.firstRowCell}>Quantity</td>
+                                                <td className={styles.firstRowCell}>Price</td>
                                             </tr>
-                                        )) : <tr><td colSpan='4'>nothing to show</td></tr>
-                                        }
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            {state.card.cardItems ? state.card.cardItems.map(item => (
+                                                <tr key={item.slug}>
+                                                    <td><Image src={item.image} width={75} height={75} alt={item.name} className={styles.image} /></td>
+                                                    <td><Link href={`/products/${item.slug}`}><span className={styles.link}>{item.name}</span></Link></td>
+                                                    <td>{item.quantity}</td>
+                                                    <td>${item.price}</td>
+                                                </tr>
+                                            )) : <tr><td colSpan='4'>nothing to show</td></tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className={styles.summaryBox}>
-                        <h4>charges</h4>
-                        <div className={styles.summaryBoxGrid}>
-                            <strong>Items:</strong>
-                            <span>${itemsPrice}</span>
-                            <strong>Tax:</strong>
-                            <span>${taxPrice}</span>
-                            <strong>Shipping:</strong>
-                            <span>${shippingPrice}</span>
-                            <strong>Total:</strong>
-                            <span>${totalPrice}</span>
+                        <div className={styles.summaryBox}>
+                            <h4>charges</h4>
+                            <div className={styles.summaryBoxGrid}>
+                                <strong>Items:</strong>
+                                <span>${itemsPrice}</span>
+                                <strong>Tax:</strong>
+                                <span>${taxPrice}</span>
+                                <strong>Shipping:</strong>
+                                <span>${shippingPrice}</span>
+                                <strong>Total:</strong>
+                                <span>${totalPrice}</span>
+                            </div>
+                            <button className={styles.orderBtn} onClick={handlePlaceOrder}>place order</button>
+                            {loading && <div className={styles.ldsHeart}><div></div></div>}
                         </div>
-                        <button className={styles.orderBtn} onClick={handlePlaceOrder}>place order</button>
-                        {loading && <div className={styles.ldsHeart}><div></div></div>}
                     </div>
                 </div>
-            </div>
+            ) : <h1 className="loginStatement">You Have To <Link href='/login'><span className="globalLink">LogIn</span></Link> First</h1>
+            }
+
         </Layout>
     )
 }

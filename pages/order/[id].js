@@ -25,9 +25,6 @@ function OrderReportPage({ id }) {
     const [orderData, setOrderData] = useState('')
 
     useEffect(() => {
-        if (!state.userData) {
-            router.push(`/login?redirect=/order/${id}`)
-        }
 
         const getData = async () => {
             const g = await fetch(`/api/orders/${id}`, {
@@ -50,9 +47,18 @@ function OrderReportPage({ id }) {
     return (
         <Layout>
             <ToastContainer />
-            {orderData &&
+            {state.userData && orderData ? (
                 <div className={styles.container}>
                     <h1 className={styles.header}>order {orderData._id}</h1>
+                    <div className={styles.linksContainer}>
+                        <Link href='/cardItemsPage'><span className={styles.link}>card items</span></Link>
+                        &nbsp;{'>'}&nbsp;
+                        <Link href='/shipping'><span className={styles.link}>shipping address</span></Link>
+                        &nbsp;{'>'}&nbsp;
+                        <Link href='/payment'><span className={styles.link}>payment methods</span></Link>
+                        &nbsp;{'>'}&nbsp;
+                        <Link href='/placeOrder'><span className={styles.link}>place order</span></Link>
+                    </div>
                     <div className={styles.mainFlex}>
                         <div className={styles.left}>
                             <div className={styles.shippingContainer}>
@@ -116,7 +122,7 @@ function OrderReportPage({ id }) {
                                 <strong>Total:</strong>
                                 <span>${orderData.totalPrice}</span>
                             </div>
-                            {!isPaid && <div>
+                            {!isPaid && !orderData.isPaid && <div>
                                 <PayPalBtn
                                     product={orderData}
                                     token={state.userData.token}
@@ -126,6 +132,7 @@ function OrderReportPage({ id }) {
                         </div>
                     </div>
                 </div>
+            ) : <h1 className="loginStatement">You Have To <Link href='/login'><span className="globalLink">LogIn</span></Link> First</h1>
             }
         </Layout>
     )
