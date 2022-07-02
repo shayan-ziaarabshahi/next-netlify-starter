@@ -1,4 +1,5 @@
 import { PayPalButtons } from '@paypal/react-paypal-js'
+import { BASE_URL } from 'config'
 import React, { useState } from 'react'
 
 export default function PayPalBtn({ product, token, setIsPaid }) {
@@ -21,7 +22,7 @@ export default function PayPalBtn({ product, token, setIsPaid }) {
         
         const order = await actions.order.capture()
           .then(async (paidOrder) => {
-            await fetch(`http://localhost:3000/api/orders/${product._id}/pay`, {
+            await fetch(`${BASE_URL}/api/orders/${product._id}/pay`, {
               method: "PUT",
               headers: {
                 "authorization": `Bearer ${token}`

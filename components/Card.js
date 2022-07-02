@@ -4,6 +4,7 @@ import Link from 'next/link'
 import React from 'react'
 import { useContext } from 'react'
 import { Store } from './ContextProvider'
+import { BASE_URL } from 'config'
 
 
 export default function Card({data}) {
@@ -11,7 +12,7 @@ export default function Card({data}) {
   const {state, dispatch} = useContext(Store)
 
   const handleAdd = async () => {
-    const d = await fetch(`http://localhost:3000/api/products/${data.slug}`)
+    const d = await fetch(`${BASE_URL}/api/products/${data.slug}`)
     const p = await d.json()
 
     if (p.countInStock === 0) {

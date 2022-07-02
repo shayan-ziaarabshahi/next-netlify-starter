@@ -1,5 +1,6 @@
 .header {
     margin: 1rem;
+    word-wrap: break-word;
 }
 
 .mainFlex {
@@ -127,4 +128,10 @@
   cursor: pointer;
   color: rgb(0, 60, 255);
   text-decoration: underline;
+}
+
+@media (max-width:550px) {
+  .mainFlex {
+    flex-direction: column;
+  }
 }

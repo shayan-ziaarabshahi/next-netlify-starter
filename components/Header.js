@@ -27,7 +27,7 @@ export default function Header() {
   return (
     <div className={styles.container}>
       <div className={styles.upContainer}>
-        <Link href='/'><div className={styles.brand}>Brand</div></Link>
+        <Link href='/'><div className={styles.brand}>Store</div></Link>
         <div className={styles.upRightContainer}>
         { !state.userData &&
           <Link href='/login'><div>Login</div></Link>
@@ -38,8 +38,6 @@ export default function Header() {
           <div className={styles.profileIcon}><i className="bi bi-person-circle"></i></div>
           <div className={styles.profileMenu}>
             <div className={styles.arrowUp}></div>
-            <div className={styles.profileMenuItem}>profile</div>
-            <Link href='/orders'><div className={styles.profileMenuItem}>order history</div></Link>
             <div className={styles.profileMenuItemLast} onClick={handleLogout}>log out</div>
           </div>
           </div>
@@ -55,11 +53,6 @@ export default function Header() {
               </div>
             </div>
           </Link>
-          <div>
-            <div className={styles.menuIcon}>
-              <i className="bi bi-list"></i>
-            </div>
-          </div>
         </div>
       </div>
       <nav className={styles.navigationContainer}>

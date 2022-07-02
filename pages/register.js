@@ -12,6 +12,7 @@ import * as yup from 'yup';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BASE_URL } from 'config'
 
 
 export default function Register() {
@@ -44,7 +45,7 @@ export default function Register() {
     const submitFunc = async (data) => {
         delete data.confirmPassword
         console.log(data)
-        const p = await fetch('http://localhost:3000/api/auth/register', {
+        const p = await fetch(`${BASE_URL}/api/auth/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

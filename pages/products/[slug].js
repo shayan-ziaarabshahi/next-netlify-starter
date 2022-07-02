@@ -6,6 +6,7 @@ import db from '../../db'
 import Product from '../../models/Product'
 import { Store } from './../../components/ContextProvider'
 import Layout from './../../components/Layout'
+import { BASE_URL } from 'config'
 
 
 
@@ -19,7 +20,7 @@ export default function ProductDetailsPage({ product }) {
 
 
     const handleAdd = async () => {
-        const d = await fetch(`http://localhost:3000/api/products/${product.slug}`)
+        const d = await fetch(`${BASE_URL}/api/products/${product.slug}`)
         const p = await d.json()
 
         if (p.countInStock === 0) {
@@ -65,7 +66,9 @@ export default function ProductDetailsPage({ product }) {
                                 <div>status</div>
                                 <div>{product.countInStock > 0 ? 'in stock' : 'out of stock'}</div>
                             </div>
+                            <div className={styles.btnWrapper}>
                             <button className={styles.paymentBtn} onClick={handleAdd}>add to card</button>
+                            </div>
                         </div>
                     </div>
                 </div>

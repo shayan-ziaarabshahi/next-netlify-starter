@@ -8,7 +8,7 @@
 }
 
 .left {
-    width: 100%;
+    width: 100%; 
     margin-right: 1rem;
 }
 
@@ -104,6 +104,17 @@
     top: -24px;
     border-radius: 50% 50% 0 0;
   }
+
+  .linksContainer {
+    margin: 1rem;
+  }
+  
+  .link {
+    cursor: pointer;
+    color: rgb(0, 60, 255);
+    text-decoration: underline;
+  }
+
   @keyframes ldsHeart {
     0% {
       transform: scale(0.75);
@@ -125,13 +136,9 @@
     }
   }
   
+  @media (max-width:550px) {
+    .mainFlex {
+      flex-direction: column;
+    }
+  }
 
-.linksContainer {
-  margin: 1rem;
-}
-
-.link {
-  cursor: pointer;
-  color: rgb(0, 60, 255);
-  text-decoration: underline;
-}

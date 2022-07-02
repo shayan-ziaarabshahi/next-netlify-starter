@@ -7,6 +7,7 @@ import { Store } from '../components/ContextProvider'
 import { useRouter } from 'next/router'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BASE_URL } from 'config'
 
 
 
@@ -44,7 +45,7 @@ export default function PlaceOrder() {
         itemsPrice,
         shippingPrice,
         taxPrice,
-        totalPrice
+        totalPrice 
     }
 
 
@@ -57,7 +58,7 @@ export default function PlaceOrder() {
         }
 
         setLoading(true)
-        const p = await fetch('http://localhost:3000/api/orders', {
+        const p = await fetch(`${BASE_URL}/api/orders`, {
             method: 'POST',
             headers: {
                 'authorization': `Bearer ${state.userData.token}`

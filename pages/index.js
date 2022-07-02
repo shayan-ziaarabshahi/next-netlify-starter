@@ -10,7 +10,7 @@ export default function Home({products}) {
     <Layout>
       <div className={styles.container}>
         <h1>products</h1>
-        <div className={styles.productsGrid}>
+        <div className={styles.productsGrid}> 
           {products.map(item => <Card key={item.slug} data={item}/>)}
         </div>
       </div>

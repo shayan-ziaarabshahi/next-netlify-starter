@@ -54,6 +54,7 @@
 }
 
 .profileMenu {
+    width: max-content;
     display: none;
     position: absolute;
     top: 2.75rem;
