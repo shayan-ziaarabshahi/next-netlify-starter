@@ -5,18 +5,17 @@ import styles from './../styles/login.module.css'
 import { useState } from 'react'
 import { Store } from '../components/ContextProvider'
 import { useRouter } from 'next/router'
-
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import dynamic from 'next/dynamic'
 
 
 
 
-export default function Login() {
+function Login() {
 
     const formValidationSchema = yup.object().shape({
         email: yup.string().email().required(),
@@ -81,4 +80,7 @@ export default function Login() {
     )
 }
 
+export default dynamic(() => Promise.resolve(Login), {
+    ssr: false
+})
 

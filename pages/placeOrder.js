@@ -7,11 +7,11 @@ import { Store } from '../components/ContextProvider'
 import { useRouter } from 'next/router'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import dynamic from 'next/dynamic'
 
 
 
-
-export default function PlaceOrder() {
+function PlaceOrder() {
 
     const [loading, setLoading] = useState(false)
 
@@ -45,7 +45,7 @@ export default function PlaceOrder() {
         itemsPrice,
         shippingPrice,
         taxPrice,
-        totalPrice 
+        totalPrice
     }
 
 
@@ -151,3 +151,7 @@ export default function PlaceOrder() {
         </Layout>
     )
 }
+
+export default dynamic(() => Promise.resolve(currentComponent), {
+    ssr: false
+})

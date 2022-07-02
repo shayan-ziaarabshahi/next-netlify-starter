@@ -8,9 +8,10 @@ import { useContext } from 'react'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import dynamic from 'next/dynamic'
 
 
-export default function Payment() {
+function Payment() {
 
     const { state, dispatch } = useContext(Store)
 
@@ -69,3 +70,8 @@ export default function Payment() {
         </Layout>
     )
 }
+
+export default dynamic(() => Promise.resolve(Payment), {
+    ssr: false
+   })
+   

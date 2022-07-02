@@ -8,13 +8,13 @@ import { useRouter } from 'next/router'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PayPalBtn from '../../components/PayPalBtn'
+import dynamic from 'next/dynamic'
 
 
 
 
 
-
-export default function OrderReportPage({ id }) {
+function OrderReportPage({ id }) {
 
     const [isPaid, setIsPaid] = useState(false)
 
@@ -138,3 +138,5 @@ export async function getServerSideProps({ query: { id } }) {
         }
     }
 }
+
+export default dynamic(() => Promise.resolve(OrderReportPage),{ssr:false})

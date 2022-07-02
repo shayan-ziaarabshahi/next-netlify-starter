@@ -8,9 +8,10 @@ import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
 
 
-export default function Shipping() {
+function Shipping() {
 
   const { state, dispatch } = useContext(Store)
 
@@ -80,3 +81,5 @@ export default function Shipping() {
     </Layout>
   )
 }
+
+export default dynamic(() => Promise.resolve(Shipping), { ssr: false })
