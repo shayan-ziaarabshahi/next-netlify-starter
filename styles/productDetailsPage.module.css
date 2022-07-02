@@ -1,0 +1,77 @@
+.container {}
+
+.backLink {
+    margin: 1rem;
+    cursor: pointer;
+}
+
+.mainFlex {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+} 
+
+.image {
+    margin: 0 1rem;
+}
+
+.rightFlex {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.name {
+    margin-top: 0;
+}
+
+.dataPart {
+    margin: 0 1rem;
+}
+
+.paymentPart {
+    margin: 0 1rem;
+    text-align: center;
+    width: 200px;
+    background-color:khaki;
+    padding: 1rem;
+    height: 135px;
+}
+
+.paymentPartGrid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, calc(50% - 1rem));
+}
+
+.paymentBtn {
+    padding: 0.5rem 1rem;
+    border: 0;
+    outline: 0;
+    border-radius: 2.5px;
+    background-color: bisque;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
+@media (max-width: 1150px) {
+    .rightFlex {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .dataPart {
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 580px) {
+    .mainFlex {
+        flex-direction: column;
+    }
+
+    .rightFlex {
+        margin-top: 2rem;
+        width: 100%;
+    }
+}

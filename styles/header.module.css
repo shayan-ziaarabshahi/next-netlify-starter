@@ -1,0 +1,101 @@
+.container {
+    padding: 0.5rem;
+    background-color: bisque;
+}
+
+.upContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.upRightContainer {
+    display: flex;
+    align-items: center;
+}
+
+.brand {
+    cursor: pointer;
+}
+
+.bag {
+    margin: 0 0.5rem;
+    position: relative;
+    cursor: pointer;
+}
+
+.bagIcon {
+    font-size: 2rem;
+}
+
+.badge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 0.5rem;
+    position: absolute;
+    top: 0.85rem;
+    left: 0.55rem;
+}
+
+.menuIcon {
+    font-size: 2rem;
+}
+
+.profile {
+    position: relative;
+}
+
+.profileIcon {
+    font-size: 2rem;
+    color: deepskyblue;
+}
+
+.profileMenu {
+    display: none;
+    position: absolute;
+    top: 2.75rem;
+    left: 50%;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    z-index: 1000;
+    transform: translateX(-50%);
+}
+
+.arrowUp {
+    width: 0; 
+    height: 0; 
+    border-left: 7.5px solid transparent;
+    border-right: 7.5px solid transparent;
+    border-bottom: 7.5px solid white;
+    position: absolute;
+    top: -7.5px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+.profileMenuItem {
+    padding: 0.75rem 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+.profileMenuItemLast {
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+}
+.profileMenuItem:hover {
+    color: rgb(48, 248, 172);
+}
+.profileMenuItemLast:hover {
+    color: rgb(235, 150, 135);
+}
+
+
+.profile:hover .profileMenu {
+    display: initial;
+}
+
+

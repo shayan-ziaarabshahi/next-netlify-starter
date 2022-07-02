@@ -1,0 +1,37 @@
+.container {
+    width: 290px;
+}
+
+.datacontainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, calc(50% - 0.25rem));
+    justify-content: space-between;
+    gap: 0.25rem;
+}
+.name {
+
+}
+
+.price {
+    text-align: end;
+}
+
+.detailsBtn {
+    padding: 0.5rem 1rem;
+    border-radius: 2.5px;
+    background-color: rgb(17, 201, 201);
+    color: white;
+    border: none;
+    outline: none;
+    display: block;
+}
+
+.cardBtn {
+    padding: 0.5rem 1rem;
+    border-radius: 2.5px;
+    background-color: rgb(93, 161, 84);
+    color: white;
+    border: none;
+    outline: none;
+    display: block;
+}

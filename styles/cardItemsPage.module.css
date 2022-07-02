@@ -1,0 +1,61 @@
+.container {
+    margin: 1rem;
+}
+
+.table {
+    width: 100%;
+}
+
+.firstRowCell {
+    font-weight: bold;
+    padding-bottom: 30px;
+
+}
+
+.image {
+    border-radius: 5px;
+}
+
+.link {
+    cursor: pointer;
+    color: darkorange;
+}
+
+.totalBox {
+    margin-top: 2rem;
+    background-color: rgba(174, 243, 243, 0.685);
+    padding: 1rem;
+    width: 200px;
+    height: fit-content;
+}
+
+.firstTr {
+    padding-bottom: 25px;
+}
+
+.crossIcon {
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.totalPriceLabel {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.totalPrice {
+    display: block;
+}
+
+.btnWrapper {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.checkoutButton {
+    padding: 0.5rem 1rem;
+    background-color: bisque;
+    border-radius: 2.5px;
+    border: none;
+    outline: none;
+}

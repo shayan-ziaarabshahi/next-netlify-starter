@@ -1,0 +1,10 @@
+.container {
+  padding: 0 2rem;
+}
+
+.productsGrid {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, 290px);
+  gap: 1rem;
+}

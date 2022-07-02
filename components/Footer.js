@@ -1,11 +1,10 @@
-import styles from './Footer.module.css'
+import styles from '../styles/footer.module.css'
+import React from 'react'
 
 export default function Footer() {
   return (
-    <>
-      <footer className={styles.footer}>
-        Made with <img src="/netliheart.svg" alt="Netlify Logo" className={styles.logo} /> for you
-      </footer>
-    </>
+    <div className={styles.container}>
+      <span>all right reserved 2022</span>
+    </div>
   )
-}
+} 
