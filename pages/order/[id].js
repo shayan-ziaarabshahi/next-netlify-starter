@@ -116,13 +116,13 @@ function OrderReportPage({ id }) {
                                 <strong>Total:</strong>
                                 <span>${orderData.totalPrice}</span>
                             </div>
-                            <div>
+                            {!isPaid && <div>
                                 <PayPalBtn
-                                 product={orderData}
-                                 token={state.userData.token}
-                                 setIsPaid={setIsPaid}
-                                 />
-                            </div>
+                                    product={orderData}
+                                    token={state.userData.token}
+                                    setIsPaid={setIsPaid}
+                                />
+                            </div>}
                         </div>
                     </div>
                 </div>
@@ -139,4 +139,4 @@ export async function getServerSideProps({ query: { id } }) {
     }
 }
 
-export default dynamic(() => Promise.resolve(OrderReportPage),{ssr:false})
+export default dynamic(() => Promise.resolve(OrderReportPage), { ssr: false })
