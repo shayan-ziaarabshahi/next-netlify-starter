@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PayPalBtn from '../../components/PayPalBtn'
-import { BASE_URL } from 'config'
+
 
 
 
@@ -30,7 +30,7 @@ export default function OrderReportPage({ id }) {
         }
 
         const getData = async () => {
-            const g = await fetch(`${BASE_URL}/api/orders/${id}`, {
+            const g = await fetch(`/api/orders/${id}`, {
                 headers: {
                     'authorization': `Bearer ${state.userData.token}`
                 }

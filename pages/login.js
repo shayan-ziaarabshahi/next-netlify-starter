@@ -12,7 +12,7 @@ import * as yup from 'yup';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { BASE_URL } from 'config'
+
 
 
 
@@ -43,7 +43,7 @@ export default function Login() {
 
     const submitFunc = async (data) => {
 
-        const p = await fetch(`${BASE_URL}/api/auth/login`, {
+        const p = await fetch(`/api/auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

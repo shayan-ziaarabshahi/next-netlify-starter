@@ -6,7 +6,6 @@ import db from '../../db'
 import Product from '../../models/Product'
 import { Store } from './../../components/ContextProvider'
 import Layout from './../../components/Layout'
-import { BASE_URL } from 'config'
 
 
 
@@ -20,7 +19,7 @@ export default function ProductDetailsPage({ product }) {
 
 
     const handleAdd = async () => {
-        const d = await fetch(`${BASE_URL}/api/products/${product.slug}`)
+        const d = await fetch(`/api/products/${product.slug}`)
         const p = await d.json()
 
         if (p.countInStock === 0) {
