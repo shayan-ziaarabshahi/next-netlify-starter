@@ -152,6 +152,6 @@ function PlaceOrder() {
     )
 }
 
-export default dynamic(() => Promise.resolve(currentComponent), {
+export default dynamic(() => Promise.resolve(PlaceOrder), {
     ssr: false
 })
