@@ -35,8 +35,6 @@ function OrderReportPage({ id }) {
             const res = await g.json()
             if (g.ok) {
                 setOrderData(res)
-            } else {
-                toast.error('something went wrong')
             }
         }
         getData()

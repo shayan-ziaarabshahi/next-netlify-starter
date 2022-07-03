@@ -26,6 +26,6 @@ export const isAuth = async (req, res, next) => {
             }
         });
     } else {
-        res.status(401).send({ message: 'Token is not suppiled' });
+        res.status(401).send({ message: 'Token is not supplied' });
     }
 };

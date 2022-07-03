@@ -9,7 +9,7 @@ handler.use(isAuth)
 
 handler.get(async (req, res) => {
   await db.connect();
-  const order = await Order.findOne({_id:req.query.id});
+  const order = await Order.findOne({user:req.user._id});
   await db.disconnect();
   res.send(order);
 });

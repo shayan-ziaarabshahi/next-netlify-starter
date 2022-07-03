@@ -40,7 +40,7 @@ function PlaceOrder() {
         taxPrice,
         totalPrice
     }
-
+ 
 
     const handlePlaceOrder = async () => {
 

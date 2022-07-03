@@ -11,7 +11,7 @@ handler.use(isAuth)
 
 handler.put(async (req, res) => {
   await db.connect();
-  const order = await Order.findOne({_id:req.query.id});
+  const order = await Order.findOne({user:req.user._id, _id:req.query.id}); 
   if (order) {
     order.isPaid = true;
     order.paidAt = Date.now()
